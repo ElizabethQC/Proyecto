@@ -3,7 +3,7 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-from .models import ObrasSociales, Especialidades, Pacientes, Consultorios
+from .models import ObrasSociales, Especialidades, Pacientes, Consultorios, Horarios
 from .forms import OSFormulario, EspecialidadesFormulario
 
 def inicio(request):
@@ -22,18 +22,18 @@ class OSList(ListView):
 
 class OSDetail(DetailView):
     model = ObrasSociales
-    template_name = "os_detail.html"
+    template_name = "os/os_detail.html"
     context_object_name = "obra_social"
 
 class OSUpdate(UpdateView):
     model = ObrasSociales
-    template_name = "os_update.html"
+    template_name = "os/os_update.html"
     fields = ('__all__')
     success_url = "/clinica-app/"
 
 class OSDelete(DeleteView):
     model = ObrasSociales
-    template_name = "os_delete.html"
+    template_name = "os/os_delete.html"
     success_url = "/clinica-app/"
 
 def busquedaOS(request):
@@ -111,3 +111,9 @@ class ConsultorioDetail(DetailView):
     model = Consultorios
     template_name = "consultorio_detail.html"
     context_object_name = "consultorio"
+
+class HorarioCreate(CreateView):
+    model = Horarios
+    template_name = "horarios_create.html"
+    fields = ["hora"]
+    success_url = "/clinica-app/"
