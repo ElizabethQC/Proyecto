@@ -37,7 +37,7 @@ class OSDelete(DeleteView):
     success_url = "/clinica-app/"
 
 def busquedaOS(request):
-    return render(request, 'buscar_os.html')
+    return render(request, 'os/buscar_os.html')
 
 def buscarOS(request):
 
@@ -47,30 +47,30 @@ def buscarOS(request):
     if request.GET['descripcion']:
         descripcion = request.GET['descripcion']
         obras_sociales = ObrasSociales.objects.filter(descripcion__icontains=descripcion)
-        return render(request, "resultado_os.html", {"obras_sociales":obras_sociales, "descripcion":descripcion})
+        return render(request, "os/resultado_os.html", {"obras_sociales":obras_sociales, "descripcion":descripcion})
     else:
         return render(request, "inicio.html")
 
 class EspecialidadCreate(CreateView):
     model = Especialidades
-    template_name = "especialidad_create.html"
+    template_name = "especialidades/especialidad_create.html"
     fields = ["descripcion"]
     success_url = "/clinica-app/"
 
 class EspecialidadList(ListView):
     model = Especialidades
-    template_name = "especialidad_list.html"
+    template_name = "especialidades/especialidad_list.html"
     context_object_name = "especialidades"
 
 class EspecialidadUpdate(UpdateView):
     model = Especialidades
-    template_name = "especialidad_update.html"
+    template_name = "especialidades/especialidad_update.html"
     fields = ('__all__')
     success_url = "/clinica-app/"
 
 class EspecialidadDelete(DeleteView):
     model = Especialidades
-    template_name = "especialidad_delete.html"
+    template_name = "especialidades/especialidad_delete.html"
     success_url = "/clinica-app/"
 
 class PacienteCreate(CreateView):
