@@ -1,0 +1,23 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block contenidoCambia %}
+
+<h1>Obras sociales afiliadas</h1>
+
+<ul>
+    <h1>Datos de paciente</h1>
+
+
+    <h3>{{paciente.nombre}} {{paciente.apellido}}</h3>
+    <p>
+        DNI: {{paciente.dni}}
+        Teléfono: {{paciente.telefono}}
+        Email: {{paciente.email}}
+        Obra social: {{paciente.id_os}}
+    </p>
+</ul>
+
+
+{% endblock contenidoCambia %}

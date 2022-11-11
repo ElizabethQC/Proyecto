@@ -75,24 +75,29 @@ class EspecialidadDelete(DeleteView):
 
 class PacienteCreate(CreateView):
     model = Pacientes
-    template_name = "pacientes_create.html"
+    template_name = "pacientes/pacientes_create.html"
     fields = ["nombre","apellido","dni","telefono","id_os"]
     success_url = "/clinica-app/"
 
 class PacienteDetail(DetailView):
     model = Pacientes
-    template_name = "paciente_detail.html"
+    template_name = "pacientes/paciente_detail.html"
     context_object_name = "paciente"
+
+class PacienteList(ListView):
+    model = Pacientes
+    template_name = "pacientes/paciente_list.html"
+    context_object_name = "pacientes"
 
 class PacienteUpdate(UpdateView):
     model = Pacientes
-    template_name = "paciente_update.html"
+    template_name = "pacientes/paciente_update.html"
     fields = ('__all__')
     success_url = "/clinica-app/"
 
 class PacientedDelete(DeleteView):
     model = Pacientes
-    template_name = "paciente_delete.html"
+    template_name = "pacientes/paciente_delete.html"
     success_url = "/clinica-app/"
 
 class ConsultorioCreate(CreateView):
