@@ -1,0 +1,26 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block contenidoCambia %}
+
+    <p>Busca: {{descripcion}}</p>
+
+    <div>
+        {% if obras_sociales %}
+            <ul>
+                {% for i in obras_sociales %}
+                    <li>
+                        {{i.descripcion}} está afiliada
+                    </li>
+                {% endfor %}
+            </ul>
+
+        {% else %}
+
+            <p>No hubo coincidencias</p>
+            
+        {% endif %}
+    </div>
+
+{% endblock contenidoCambia %}

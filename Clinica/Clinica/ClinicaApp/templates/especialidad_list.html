@@ -1,0 +1,29 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block contenidoCambia %}
+
+<h1>Especialidades</h1>
+
+<div><a href="{% url 'AgregarEspecialidad' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Agregar</a></div>
+
+<ul>
+    {% if especialidades %}
+        {% for i in especialidades %}
+            <li>
+                {{i}}
+            </li>
+            <div>
+                <button>
+                    <a href="{% url 'EditarEspecialidad' i.id %}">Editar</a>
+                </button>
+                <button>
+                    <a href="{% url 'EliminarEspecialidad' i.id %}">Eliminar</a>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+</ul>
+
+{% endblock contenidoCambia %}
