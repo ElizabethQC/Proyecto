@@ -19,12 +19,14 @@ class Consultorios(models.Model):
     def __str__(self):
         return f'{self.direccion} n\Consultorio: {self.nro_consultorio}'
 
-
-class Pacientes(models.Model):
+class Persona(models.Model):
     nombre = models.CharField(max_length=20)
     apellido = models.CharField(max_length=20)
     dni = models.IntegerField()
     telefono = models.IntegerField()
+    email = models.EmailField()
+
+class Pacientes(Persona):
     id_os = models.ForeignKey(ObrasSociales, null=True, blank=True, verbose_name="Obra Social", on_delete=models.RESTRICT)
 
     def __str__(self):
@@ -32,3 +34,4 @@ class Pacientes(models.Model):
     
     class Meta:
         verbose_name='Paciente'
+
