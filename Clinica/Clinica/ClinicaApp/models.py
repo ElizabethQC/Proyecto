@@ -19,6 +19,9 @@ class Consultorios(models.Model):
     def __str__(self):
         return f'{self.direccion} n\Consultorio: {self.nro_consultorio}'
 
+class Horarios(models.Model):
+    hora = models.TimeField()
+
 class Persona(models.Model):
     nombre = models.CharField(max_length=20)
     apellido = models.CharField(max_length=20)
