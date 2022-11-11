@@ -35,3 +35,6 @@ class Pacientes(Persona):
     class Meta:
         verbose_name='Paciente'
 
+class Doctores(Persona):
+    id_especialidad = models.ForeignKey(Especialidades, null=True, blank=True, verbose_name="Especialidad", on_delete=models.RESTRICT)
+    id_consultorio = models.ForeignKey(Consultorios, null=True, blank=True, verbose_name="Consultorio", on_delete=models.DO_NOTHING)
