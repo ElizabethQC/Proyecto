@@ -86,7 +86,7 @@ class PacienteDetail(DetailView):
 
 class PacienteList(ListView):
     model = Pacientes
-    template_name = "pacientes/paciente_list.html"
+    template_name = "pacientes/pacientes_list.html"
     context_object_name = "pacientes"
 
 class PacienteUpdate(UpdateView):
