@@ -122,6 +122,11 @@ class ConsultorioDetail(DetailView):
     template_name = "consultorios/consultorio_detail.html"
     context_object_name = "consultorio"
 
+class ConsultorioDelete(DeleteView):
+    model = Consultorios
+    template_name = "consultorios/consultorio_delete.html"
+    success_url = "/clinica-app/"
+
 class HorarioCreate(CreateView):
     model = Horarios
     template_name = "horarios/horario_create.html"
