@@ -128,3 +128,18 @@ class HorarioCreate(CreateView):
     fields = ["hora"]
     success_url = "/clinica-app/"
 
+class HorarioList(ListView):
+    model = Horarios
+    template_name = "horarios/horario_list.html"
+    context_object_name = "horarios"
+
+class HorarioUpdate(UpdateView):
+    model = Horarios
+    template_name = "horarios/horario__update.html"
+    fields = ('__all__')
+    success_url = "/clinica-app/"
+    
+class HorarioDelete(DeleteView):
+    model = Horarios
+    template_name = "horarios/horario__delete.html"
+    success_url = "/clinica-app/"    
