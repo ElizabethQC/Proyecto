@@ -1,0 +1,27 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block contenidoCambia %}
+
+<h1>Obras sociales afiliadas</h1>
+
+<div><a href="{% url 'AgregarHorario' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Agregar</a></div>
+
+<ul>
+    {% if horarios %}
+        {% for i in horarios %}
+            <li>
+                {{i}}
+            </li>
+            <div>
+                <button>
+                    <a href="{% url 'EditarHorario' i.id %}">Editar</a>
+                </button>
+                <button>
+                    <a href="{% url 'EliminarHorario' i.id %}">Eliminar</a>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+</ul>
