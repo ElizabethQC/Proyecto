@@ -1,0 +1,19 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block contenidoCambia %}
+
+<h1>Consultorio</h1>
+
+<form action="{% url 'AgregarConsultorio' %}" method="POST">
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+    <input type="submit" value="Enviar"/>
+
+</form>
+
+
+{% endblock contenidoCambia %}

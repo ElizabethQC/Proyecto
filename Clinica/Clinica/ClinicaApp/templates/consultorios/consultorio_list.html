@@ -1,0 +1,32 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block contenidoCambia %}
+
+<h1>Consultorios</h1>
+
+<div><a href="{% url 'AgregarConsultorio' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Agregar</a></div>
+
+<ul>
+    {% if consultorios %}
+        {% for i in consultorios %}
+            <li>
+                {{i}}
+            </li>
+            <div>
+                <button>
+                    <a href="{% url 'DetallePaciente' i.id %}">Ver</a>
+                </button>
+                <button>
+                    <a href="{% url 'EditarPaciente' i.id %}">Editar</a>
+                </button>
+                <button>
+                    <a href="{% url 'EliminarPaciente' i.id %}">Eliminar</a>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+</ul>
+
+{% endblock contenidoCambia %}
