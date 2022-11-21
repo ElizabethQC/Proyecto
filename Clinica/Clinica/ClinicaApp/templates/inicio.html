@@ -10,4 +10,11 @@
 <div><a href="{% url 'ListadoEspecialidad' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Especialidades</a></div>
 <div><a href="{% url 'ListadoPaciente' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Pacientes</a></div>
 
+{% if user.is_authenticated %}
+    <p>Bienvenido {{user.nombre}}</p>
+    <div><a class="btn btn-outline-primary">Cerrar sesion</a></div>
+{% else %}    
+    <div><a href="{% url 'Login' %}" class="btn btn-outline-primary">Iniciar sesion</a></div>
+{% endif %}
+
 {% endblock contenidoCambia %}

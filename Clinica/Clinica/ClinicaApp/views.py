@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 
 from .models import ObrasSociales, Especialidades, Pacientes, Consultorios, Horarios
@@ -177,22 +177,22 @@ def login_request(request):
 
         if form.is_valid():  # Si pasó la validación de Django
 
-            usuario = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
             contrasenia = form.cleaned_data.get('password')
 
-            user = authenticate(username= usuario, password=contrasenia)
+            user = authenticate(email=email, password=contrasenia)
 
             if user is not None:
                 login(request, user)
 
-                return render(request, "AppCoder/inicio.html", {"mensaje":f"Bienvenido {usuario}"})
+                return render(request, "inicio.html", {"mensaje":f"Bienvenido"})
             else:
-                return render(request, "AppCoder/inicio.html", {"mensaje":"Datos incorrectos"})
+                return render(request, "inicio.html", {"mensaje":"Datos incorrectos"})
            
         else:
 
-            return render(request, "AppCoder/inicio.html", {"mensaje":"Formulario erroneo"})
+            return render(request, "inicio.html", {"mensaje":"Formulario erroneo"})
 
     form = AuthenticationForm()
 
-    return render(request, "AppCoder/login.html", {"form": form})
+    return render(request, "login.html", {"form": form})
