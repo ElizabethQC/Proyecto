@@ -158,14 +158,14 @@ def registrarPaciente(request):
             form = PacienteRegisterForm(request.POST)
             if form.is_valid():
 
-                  email = form.cleaned_data["email"]
+                  username = form.cleaned_data["username"]
                   form.save()
                   return render(request,"inicio.html" ,  {"mensaje":"Usuario creado"})
 
       else:
             form = PacienteRegisterForm()            
 
-      return render(request,"registro_paciente.html" ,  {"form":form})
+      return render(request,"pacientes/paciente_create.html" ,  {"form":form})
 
 
 def login_request(request):
