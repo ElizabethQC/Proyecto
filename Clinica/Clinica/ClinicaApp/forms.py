@@ -1,5 +1,7 @@
 from django import forms
 from .models import Pacientes, Doctores
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 class PacientesFormulario(forms.Form):
     nombre = forms.CharField(max_length=20)
@@ -17,3 +19,18 @@ class EspecialidadesFormulario(forms.Form):
 class ConsultoriosFormulario(forms.Form):
     nro_consultorio = forms.IntegerField()
     direccion = forms.CharField(max_length=20)
+
+class PacienteRegisterForm(UserCreationForm):
+    nombre = forms.CharField(max_length=20)
+    apellido = forms.CharField(max_length=20)
+    dni = forms.IntegerField()
+    telefono = forms.IntegerField()
+    email = forms.EmailField()
+    password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
+    password2 = forms.CharField(label="Repetir contraseña", widget=forms.PasswordInput)
+
+    class Meta:
+        model =  User
+        fields = ["username", "nombre", "apellido", "dni", "telefono", "email", "password1", "password2"]
+        help_texts = {k:"" for k in fields}
+

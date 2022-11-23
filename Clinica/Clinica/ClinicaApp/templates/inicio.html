@@ -9,6 +9,7 @@
 <div><a href="{% url 'ListadoOS' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Obra social</a></div>
 <div><a href="{% url 'ListadoEspecialidad' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Especialidades</a></div>
 <div><a href="{% url 'ListadoPaciente' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Pacientes</a></div>
+<div><a href="{% url 'RegistrarPaciente' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Registrar</a></div>
 
 {% if user.is_authenticated %}
     <p>Bienvenido {{user.nombre}}</p>
