@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import inicio, OSCreate, OSList, OSUpdate, OSDetail, OSDelete, buscarOS, busquedaOS, EspecialidadCreate, EspecialidadList, EspecialidadUpdate, EspecialidadDelete, PacienteCreate, PacienteDelete, PacienteDetail, PacienteList, PacienteUpdate, ConsultorioCreate, ConsultorioDetail, ConsultorioUpdate, ConsultorioList, ConsultorioDelete, HorarioCreate, HorarioList, HorarioDelete, HorarioUpdate, login_request, registrarPaciente
-
+from .views import inicio, OSCreate, OSList, OSUpdate, OSDetail, OSDelete, buscarOS, busquedaOS, EspecialidadCreate, EspecialidadList, EspecialidadUpdate, EspecialidadDelete, PacienteCreate, PacienteDelete, PacienteDetail, PacienteList, PacienteUpdate, ConsultorioCreate, ConsultorioDetail, ConsultorioUpdate, ConsultorioList, ConsultorioDelete, HorarioCreate, HorarioList, HorarioDelete, HorarioUpdate, login_request, registrarPaciente, registrarDoctor, DoctorList, DoctorDelete
+from django.contrib.auth.views import LogoutView
 urlpatterns = [
     path('', inicio, name="Inicio"),
     path('agregar-os/', OSCreate.as_view(), name="AgregarOS"),
@@ -28,7 +28,11 @@ urlpatterns = [
     path('listado-horario/', HorarioList.as_view(), name="ListadoHorario"),
     path('editar-horario/<pk>', HorarioUpdate.as_view(), name="EditarHorario"),
     path('eliminar-horario/<pk>', HorarioDelete.as_view(), name="EliminarHorario"),
+    path('listado-doctores/', DoctorList.as_view(), name="ListadoDoctores"),
+    path('eliminar-doctor/<pk>', DoctorDelete.as_view(), name="EliminarDoctor"),
     path('login/', login_request, name="Login"),
-    path('registrar-paciente/', registrarPaciente, name="RegistrarPaciente")
+    path('registrar-paciente/', registrarPaciente, name="RegistrarPaciente"),
+    path('registrar-doctor/', registrarDoctor, name="RegistrarDoctor"),
+    path('logout/', LogoutView.as_view(template_name='logout.html'), name="Logout"),
     
 ]

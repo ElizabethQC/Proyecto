@@ -4,9 +4,12 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import ObrasSociales, Especialidades, Pacientes, Consultorios, Horarios
-from .forms import OSFormulario, EspecialidadesFormulario, PacienteRegisterForm
+from .models import ObrasSociales, Especialidades, Pacientes, Consultorios, Horarios, Doctores
+from .forms import OSFormulario, EspecialidadesFormulario, PacienteRegisterForm, DoctorRegisterForm
 
 def inicio(request):
     return render(request, "inicio.html")
@@ -148,25 +151,40 @@ class HorarioUpdate(UpdateView):
     
 class HorarioDelete(DeleteView):
     model = Horarios
-    template_name = "horarios/horario__delete.html"
+    template_name = "horarios/horario_delete.html"
+    success_url = "/clinica-app/"    
+
+class DoctorList(ListView):
+    model = Doctores
+    template_name = "doctores/doctor_list.html"
+    context_object_name = "doctores"
+
+class DoctorDelete(DeleteView):
+    model = Doctores
+    template_name = "doctores/doctor_delete.html"
     success_url = "/clinica-app/"    
 
 def registrarPaciente(request):
-
       if request.method == 'POST':
-
             form = PacienteRegisterForm(request.POST)
             if form.is_valid():
-
                   username = form.cleaned_data["username"]
                   form.save()
                   return render(request,"inicio.html" ,  {"mensaje":"Usuario creado"})
-
       else:
             form = PacienteRegisterForm()            
+      return render(request,"registro_paciente.html" ,  {"form":form})
 
-      return render(request,"pacientes/paciente_create.html" ,  {"form":form})
-
+def registrarDoctor(request):
+      if request.method == 'POST':
+            form = DoctorRegisterForm(request.POST)
+            if form.is_valid():
+                  username = form.cleaned_data["username"]
+                  form.save()
+                  return render(request,"inicio.html" ,  {"mensaje":"Usuario creado"})
+      else:
+            form = DoctorRegisterForm()            
+      return render(request,"registro_doctor.html" ,  {"form":form})
 
 def login_request(request):
 
@@ -194,3 +212,19 @@ def login_request(request):
     form = AuthenticationForm()
 
     return render(request, "login.html", {"form": form})
+
+@login_required
+def obras_sociales(request):
+
+    lista = ObrasSociales.objects.all() 
+
+    return render(request, "os_list.html", {"obras_sociales": lista})
+
+
+@staff_member_required(login_url="/clinica-app/login")
+
+def pacientes(request):
+    return render(request, "pacientes_list.html")
+
+def doctores(request):
+    return render(request, "doctores_list.html")

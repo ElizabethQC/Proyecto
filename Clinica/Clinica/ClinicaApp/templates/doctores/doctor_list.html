@@ -1,0 +1,24 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block contenidoCambia %}
+
+<h1>Doctores</h1>
+
+<ul>
+    {% if doctores %}
+        {% for i in doctores %}
+            <li>
+                {{i}}
+            </li>
+            <div>
+                <button>
+                    <a href="{% url 'EliminarDoctor' i.id %}">Eliminar</a>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+</ul>
+
+{% endblock contenidoCambia %}

@@ -1,0 +1,16 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block contenidoCambia %}
+
+<form action="{% url 'RegistrarDoctor' %}" method="POST">
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+    <button type="submit">Registrar</button>
+
+</form>
+
+{% endblock contenidoCambia %}

@@ -3,19 +3,29 @@
 {% load static %}
 
 {% block contenidoCambia %}
-
+ 
 <h1>INICIO</h1>
 
-<div><a href="{% url 'ListadoOS' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Obra social</a></div>
-<div><a href="{% url 'ListadoEspecialidad' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Especialidades</a></div>
-<div><a href="{% url 'ListadoPaciente' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Pacientes</a></div>
-<div><a href="{% url 'RegistrarPaciente' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Registrar</a></div>
+<div><a href="{% url 'RegistrarPaciente' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Soy paciente</a></div>
+<div><a href="{% url 'RegistrarDoctor' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Soy doctor</a></div>
 
-{% if user.is_authenticated %}
-    <p>Bienvenido {{user.nombre}}</p>
-    <div><a class="btn btn-outline-primary">Cerrar sesion</a></div>
-{% else %}    
-    <div><a href="{% url 'Login' %}" class="btn btn-outline-primary">Iniciar sesion</a></div>
-{% endif %}
+        {% if user.is_authenticated %}
+            <p>Bienvenido {{user.nombre}}</p>
+
+            <div><a href="{% url 'ListadoOS' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Obra social</a></div>
+            <div><a href="{% url 'ListadoEspecialidad' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Especialidades</a></div>
+            <div><a href="{% url 'ListadoPaciente' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Pacientes</a></div>
+            <div><a href="{% url 'ListadoDoctores' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Doctores</a></div>
+
+            <div class="social-icons">
+                <div class="d-flex flex-row flex-lg-column justify-content-center align-items-center h-0 mt-3 mt-lg-0">
+                    <div><a href="{% url 'Logout' %}" class="btn btn-outline-primary">Cerrar sesion</a></div>
+                </div>
+            </div> 
+            
+        {% else %}    
+            <div><a href="{% url 'Login' %}" class="btn btn-outline-primary">Iniciar sesion</a></div>
+        {% endif %}
+ 
 
 {% endblock contenidoCambia %}
