@@ -12,11 +12,13 @@
             <li>
                 {{i}}
             </li>
-            <div>
-                <button>
-                    <a href="{% url 'EliminarDoctor' i.id %}">Eliminar</a>
-                </button>
-            </div>
+            {% if user.is_staff %}
+                <div>
+                    <button>
+                        <a href="{% url 'EliminarDoctor' i.id %}">Eliminar</a>
+                    </button>
+                </div>
+            {% endif %}
         {% endfor %}
     {% endif %}
 </ul>

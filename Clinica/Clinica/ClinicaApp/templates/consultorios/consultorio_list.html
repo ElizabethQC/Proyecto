@@ -6,7 +6,9 @@
 
 <h1>Consultorios</h1>
 
-<div><a href="{% url 'AgregarConsultorio' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Agregar</a></div>
+{% if user.is_staff %}
+    <div><a href="{% url 'AgregarConsultorio' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Agregar</a></div>
+{% endif %}
 
 <ul>
     {% if consultorios %}
@@ -14,17 +16,19 @@
             <li>
                 {{i}}
             </li>
-            <div>
-                <button>
-                    <a href="{% url 'DetalleConsultorio' i.id %}">Ver</a>
-                </button>
-                <button>
-                    <a href="{% url 'EditarConsultorio' i.id %}">Editar</a>
-                </button>
-                <button>
-                    <a href="{% url 'EliminarConsultorio' i.id %}">Eliminar</a>
-                </button>
-            </div>
+            {% if user.is_staff %}
+                <div>
+                    <button>
+                        <a href="{% url 'DetalleConsultorio' i.id %}">Ver</a>
+                    </button>
+                    <button>
+                        <a href="{% url 'EditarConsultorio' i.id %}">Editar</a>
+                    </button>
+                    <button>
+                        <a href="{% url 'EliminarConsultorio' i.id %}">Eliminar</a>
+                    </button>
+                </div>
+            {% endif %}
         {% endfor %}
     {% endif %}
 </ul>

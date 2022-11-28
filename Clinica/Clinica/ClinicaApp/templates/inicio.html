@@ -4,27 +4,23 @@
 
 {% block contenidoCambia %}
  
-<h1>INICIO</h1>
-
-<div><a href="{% url 'RegistrarPaciente' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Soy paciente</a></div>
-<div><a href="{% url 'RegistrarDoctor' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Soy doctor</a></div>
+<h1>Clinica</h1>
 
         {% if user.is_authenticated %}
-            <p>Bienvenido {{user.nombre}}</p>
+            <p>Bienvenido</p>
 
-            <div><a href="{% url 'ListadoOS' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Obra social</a></div>
-            <div><a href="{% url 'ListadoEspecialidad' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Especialidades</a></div>
-            <div><a href="{% url 'ListadoPaciente' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Pacientes</a></div>
-            <div><a href="{% url 'ListadoDoctores' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Doctores</a></div>
+            <div><a href="{% url 'ListadoOS' %}" class="btn btn-primary" id="submitButton" type="submit">Obra social</a></div>
+            <div><a href="{% url 'ListadoEspecialidad' %}" class="btn btn-primary" id="submitButton" type="submit">Especialidades</a></div>
+            <div><a href="{% url 'ListadoDoctores' %}" class="btn btn-primary" id="submitButton" type="submit">Doctores</a></div>
 
-            <div class="social-icons">
-                <div class="d-flex flex-row flex-lg-column justify-content-center align-items-center h-0 mt-3 mt-lg-0">
-                    <div><a href="{% url 'Logout' %}" class="btn btn-outline-primary">Cerrar sesion</a></div>
-                </div>
-            </div> 
-            
+            {% if user.is_staff %}
+                <div><a href="{% url 'ListadoPaciente' %}" class="btn btn-primary" id="submitButton" type="submit">Pacientes</a></div>
+            {% endif%}
+        
         {% else %}    
-            <div><a href="{% url 'Login' %}" class="btn btn-outline-primary">Iniciar sesion</a></div>
+            <div><a href="{% url 'Login' %}" class="btn btn-primary">Iniciar sesion</a></div>
+            <div><a href="{% url 'RegistrarPaciente' %}" class="btn btn-primary" id="submitButton" type="submit">Soy paciente</a></div>
+            <div><a href="{% url 'RegistrarDoctor' %}" class="btn btn-primary" id="submitButton" type="submit">Soy doctor</a></div>
         {% endif %}
  
 

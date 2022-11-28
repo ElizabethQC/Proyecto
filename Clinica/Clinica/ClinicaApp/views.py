@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import ObrasSociales, Especialidades, Pacientes, Consultorios, Horarios, Doctores
+from .models import ObrasSociales, Especialidades, Pacientes, Consultorios, Horarios, Doctores, Persona
 from .forms import OSFormulario, EspecialidadesFormulario, PacienteRegisterForm, DoctorRegisterForm
 
 def inicio(request):
@@ -219,7 +219,6 @@ def obras_sociales(request):
     lista = ObrasSociales.objects.all() 
 
     return render(request, "os_list.html", {"obras_sociales": lista})
-
 
 @staff_member_required(login_url="/clinica-app/login")
 

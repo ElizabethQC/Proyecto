@@ -5,23 +5,25 @@
 {% block contenidoCambia %}
 
 <h1>Especialidades</h1>
-
-<div><a href="{% url 'AgregarEspecialidad' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Agregar</a></div>
-
+{% if user.is_staff %}
+    <div><a href="{% url 'AgregarEspecialidad' %}" class="btn btn-outline-primary" id="submitButton" type="submit">Agregar</a></div>
+{% endif %}
 <ul>
     {% if especialidades %}
         {% for i in especialidades %}
             <li>
                 {{i}}
             </li>
-            <div>
-                <button>
-                    <a href="{% url 'EditarEspecialidad' i.id %}">Editar</a>
-                </button>
-                <button>
-                    <a href="{% url 'EliminarEspecialidad' i.id %}">Eliminar</a>
-                </button>
-            </div>
+            {% if user.is_staff %}
+                <div>
+                    <button>
+                        <a href="{% url 'EditarEspecialidad' i.id %}">Editar</a>
+                    </button>
+                    <button>
+                        <a href="{% url 'EliminarEspecialidad' i.id %}">Eliminar</a>
+                    </button>
+                </div>
+            {% endif %}
         {% endfor %}
     {% endif %}
 </ul>
