@@ -37,15 +37,17 @@
         <div class="social-icons">
             <div class="d-flex flex-row flex-lg-column justify-content-center align-items-center h-0 mt-3 mt-lg-0">
                 <a class="btn btn-dark m-3" href="{% url 'Inicio' %}">Clinica</a>
-                
+                <a class="btn btn-dark m-3" href="{% url 'Nosotros' %}">Nosotros</a>
 
                 {% if user.is_authenticated %}
                     <a class="btn btn-dark m-3" href="{% url 'ListadoOS' %}">Obra social</a>
                     <a class="btn btn-dark m-3" href="{% url 'ListadoEspecialidad' %}">Especialidades</a>
+                    <a class="btn btn-dark m-3" href="{% url 'ListadoDoctores' %}">Doctores</a>
                     <a class="btn btn-dark m-3" href="{% url 'Logout' %}">Cerrar sesion</a>
                 {% else %}
                     <a href="{% url 'Login' %}" class="btn btn-dark m-3">Iniciar sesion</a>
                 {% endif %}
+        
                 <!-- <a class="btn btn-dark m-3" href="#!"><i class="fab fa-twitter"></i></a>
                 <a class="btn btn-dark m-3" href="#!"><i class="fab fa-facebook-f"></i></a>
                 <a class="btn btn-dark m-3" href="#!"><i class="fab fa-instagram"></i></a> -->

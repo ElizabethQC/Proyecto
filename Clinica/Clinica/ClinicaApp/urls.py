@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import inicio, OSCreate, OSList, OSUpdate, OSDetail, OSDelete, buscarOS, busquedaOS, EspecialidadCreate, EspecialidadList, EspecialidadUpdate, EspecialidadDelete, PacienteCreate, PacienteDelete, PacienteDetail, PacienteList, PacienteUpdate, ConsultorioCreate, ConsultorioDetail, ConsultorioUpdate, ConsultorioList, ConsultorioDelete, HorarioCreate, HorarioList, HorarioDelete, HorarioUpdate, login_request, registrarPaciente, registrarDoctor, DoctorList, DoctorDelete
+from .views import inicio, OSCreate, OSList, OSUpdate, OSDetail, OSDelete, buscarOS, busquedaOS, EspecialidadCreate, EspecialidadList, EspecialidadUpdate, EspecialidadDelete, buscarEspecialidad, busquedaEspecialidad, PacienteCreate, PacienteDelete, PacienteDetail, PacienteList, PacienteUpdate, ConsultorioCreate, ConsultorioDetail, ConsultorioUpdate, ConsultorioList, ConsultorioDelete, HorarioCreate, HorarioList, HorarioDelete, HorarioUpdate, login_request, registrarPaciente, DoctorList, DoctorDelete, DoctorCreate, DoctorDetail, DoctorUpdate, nosotros
 from django.contrib.auth.views import LogoutView
 urlpatterns = [
     path('', inicio, name="Inicio"),
@@ -14,6 +14,8 @@ urlpatterns = [
     path('listado-especialidad/', EspecialidadList.as_view(), name="ListadoEspecialidad"),
     path('editar-especialidad/<pk>', EspecialidadUpdate.as_view(), name="EditarEspecialidad"),
     path('eliminar-especialidad/<pk>', EspecialidadDelete.as_view(), name="EliminarEspecialidad"),
+     path('buscar-especialidad/', busquedaEspecialidad, name="BuscarEspecialidad"),
+    path('resultado-especialidad/', buscarEspecialidad, name="ResultadoEspecialidad"),
     path('agregar-paciente/', PacienteCreate.as_view(), name="AgregarPaciente"),
     path('listado-pacientes/', PacienteList.as_view(), name="ListadoPaciente"),
     path('editar-paciente/<pk>', PacienteUpdate.as_view(), name="EditarPaciente"),
@@ -28,11 +30,14 @@ urlpatterns = [
     path('listado-horario/', HorarioList.as_view(), name="ListadoHorario"),
     path('editar-horario/<pk>', HorarioUpdate.as_view(), name="EditarHorario"),
     path('eliminar-horario/<pk>', HorarioDelete.as_view(), name="EliminarHorario"),
+    path('agregar-doctor/', DoctorCreate.as_view(), name="AgregarDoctor"),
     path('listado-doctores/', DoctorList.as_view(), name="ListadoDoctores"),
     path('eliminar-doctor/<pk>', DoctorDelete.as_view(), name="EliminarDoctor"),
+    path('detalle-doctor/<pk>', DoctorDetail.as_view(), name="DetalleDoctor"),
+    path('editar-doctor/<pk>', DoctorUpdate.as_view(), name="EditarDoctor"),
     path('login/', login_request, name="Login"),
     path('registrar-paciente/', registrarPaciente, name="RegistrarPaciente"),
-    path('registrar-doctor/', registrarDoctor, name="RegistrarDoctor"),
+    # path('registrar-doctor/', registrarDoctor, name="RegistrarDoctor"),
     path('logout/', LogoutView.as_view(template_name='logout.html'), name="Logout"),
-    
+    path('nosotros/', nosotros, name="Nosotros"),
 ]

@@ -6,6 +6,10 @@
 
 <h1>Doctores</h1>
 
+{% if user.is_staff %}
+    <a href="{% url 'AgregarDoctor' %}" class="btn btn-primary">Agregar</a>
+{% endif %}
+
 <ul>
     {% if doctores %}
         {% for i in doctores %}
@@ -14,6 +18,12 @@
             </li>
             {% if user.is_staff %}
                 <div>
+                    <button>
+                        <a href="{% url 'DetalleDoctor' i.id %}">Ver</a>
+                    </button>
+                    <button>
+                        <a href="{% url 'EditarDoctor' i.id %}">Editar</a>
+                    </button>
                     <button>
                         <a href="{% url 'EliminarDoctor' i.id %}">Eliminar</a>
                     </button>

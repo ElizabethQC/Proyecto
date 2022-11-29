@@ -14,6 +14,9 @@ from .forms import OSFormulario, EspecialidadesFormulario, PacienteRegisterForm,
 def inicio(request):
     return render(request, "inicio.html")
 
+def nosotros(request):
+    return render(request, "nosotros.html")
+
 class OSCreate(CreateView):
     model = ObrasSociales
     template_name = "os/os_create.html"
@@ -77,6 +80,22 @@ class EspecialidadDelete(DeleteView):
     model = Especialidades
     template_name = "especialidades/especialidad_delete.html"
     success_url = "/clinica-app/"
+
+def busquedaEspecialidad(request):
+    return render(request, 'especialidades/buscar_especialidad.html')
+
+def buscarEspecialidad(request):
+
+    print('method:', request.method)
+    print('post: ', request.POST)
+
+    if request.GET['descripcion']:
+        descripcion = request.GET['descripcion']
+        especialidades = Especialidades.objects.filter(descripcion__icontains=descripcion)
+        return render(request, "especialidades/resultado_especialidad.html", {"especialidades":especialidades, "descripcion":descripcion})
+    else:
+        return render(request, "inicio.html")
+
 
 class PacienteCreate(CreateView):
     model = Pacientes
@@ -162,7 +181,24 @@ class DoctorList(ListView):
 class DoctorDelete(DeleteView):
     model = Doctores
     template_name = "doctores/doctor_delete.html"
+    success_url = "/clinica-app/"
+
+class DoctorCreate(CreateView):
+    model = Doctores
+    template_name = "doctores/doctor_create.html"
+    fields = ["nombre","apellido","dni","telefono", "email", "id_especialidad"]
     success_url = "/clinica-app/"    
+
+class DoctorUpdate(UpdateView):
+    model = Doctores
+    template_name = "doctores/doctor_update.html"
+    fields = ('__all__')
+    success_url = "/clinica-app/"
+
+class DoctorDetail(DetailView):
+    model = Doctores
+    template_name = "doctores/doctor_detail.html"
+    context_object_name = "doctor"
 
 def registrarPaciente(request):
       if request.method == 'POST':
@@ -170,21 +206,21 @@ def registrarPaciente(request):
             if form.is_valid():
                   username = form.cleaned_data["username"]
                   form.save()
-                  return render(request,"inicio.html" ,  {"mensaje":"Usuario creado"})
+                  return render(request,"login.html" ,  {"mensaje":"Usuario creado"})
       else:
             form = PacienteRegisterForm()            
       return render(request,"registro_paciente.html" ,  {"form":form})
 
-def registrarDoctor(request):
-      if request.method == 'POST':
-            form = DoctorRegisterForm(request.POST)
-            if form.is_valid():
-                  username = form.cleaned_data["username"]
-                  form.save()
-                  return render(request,"inicio.html" ,  {"mensaje":"Usuario creado"})
-      else:
-            form = DoctorRegisterForm()            
-      return render(request,"registro_doctor.html" ,  {"form":form})
+# def registrarDoctor(request):
+#       if request.method == 'POST':
+#             form = DoctorRegisterForm(request.POST)
+#             if form.is_valid():
+#                   username = form.cleaned_data["username"]
+#                   form.save()
+#                   return render(request,"login.html" ,  {"mensaje":"Usuario creado"})
+#       else:
+#             form = DoctorRegisterForm()            
+#       return render(request,"registro_doctor.html" ,  {"form":form})
 
 def login_request(request):
 

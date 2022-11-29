@@ -1,0 +1,18 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block contenidoCambia %}
+
+<h1>Dr. {{doctor.nombre}} {{doctor.apellido}} </h1>
+
+<ul>
+    <p>DNI: {{doctor.dni}}</p>
+    <p>Teléfono: {{doctor.telefono}}</p>
+    <p>Email: {{doctor.email}}</p>
+    <p>Especialidad: {{doctor.id_especialidad}}</p>
+
+</ul>
+
+
+{% endblock contenidoCambia %}
