@@ -8,4 +8,4 @@ Una vez registrado, se redireccionará a la página de inicio de sesión, dónde
 Cuando se haya iniciado sesión, se podrán ver diferentes opciones tales como "Obras sociales", "Especialidades" y "Doctores", 
 cada apartado contiene un listado.
 
-Link a vídeo explicativo: 
+Link a vídeo explicativo: https://youtu.be/YHhxoEJJcGM
